@@ -4,9 +4,10 @@ import Logo from '../../assets/images/Logo.svg'
 import { FiChevronRight} from 'react-icons/fi';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-interface Repository {
+export interface IRepository {
   full_name: string;
   description: string;
   owner: {
@@ -18,7 +19,7 @@ interface Repository {
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
-  const [repositories, setRepositories] = useState<Repository[]>(() => {
+  const [repositories, setRepositories] = useState<IRepository[]>(() => {
     const storageRepositories = localStorage.getItem('@GithubJs:repositories')
 
     if (storageRepositories) {
@@ -69,7 +70,7 @@ const Dashboard: React.FC = () => {
     <Repository>
       {repositories.map(Repository => (
               // eslint-disable-next-line jsx-a11y/anchor-is-valid
-              <a key={Repository.full_name} href="#">
+              <Link key={Repository.full_name} to={`/repository/${Repository.full_name}`}>
               <img src={Repository.owner.avatar_url} 
               alt={Repository.owner.avatar_url}/>
               <div>
@@ -78,7 +79,7 @@ const Dashboard: React.FC = () => {
               </div>
        
               <FiChevronRight size={20}/>
-             </a>
+             </Link>
       ))}
     </Repository>
     </>
