@@ -4,7 +4,6 @@ import { Header, HeaderInfoRepository, RepositoryInfoUser } from './style';
 import Logo from '../../assets/images/Logo.svg'
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import { Link } from 'react-router-dom';
-import Tiago from '../../assets/images/Tiago.png';
 import api  from '../../services/api';
 
 interface RepositoryParms {
